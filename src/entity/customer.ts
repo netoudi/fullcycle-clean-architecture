@@ -1,7 +1,8 @@
 export class Customer {
-  private _id: string;
+  private readonly _id: string;
   private _name: string;
-  private _address: string;
+  private readonly _address: string;
+  private _active: boolean = true;
 
   constructor(id: string, name: string, address: string) {
     this._id = id;
@@ -9,28 +10,16 @@ export class Customer {
     this._address = address;
   }
 
-  get id(): string {
-    return this._id;
+  changeName(name: string): void {
+    this._name = name;
   }
 
-  set id(value: string) {
-    this._id = value;
+  activate(): void {
+    this._active = true;
   }
 
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
-  get address(): string {
-    return this._address;
-  }
-
-  set address(value: string) {
-    this._address = value;
+  deactivate(): void {
+    this._active = false;
   }
 
   toString(): string {
