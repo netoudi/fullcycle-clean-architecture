@@ -4,6 +4,6 @@ const message: string = 'Hello World';
 
 console.log(message);
 
-const customer = new Customer('John Doe');
+const customer = new Customer('1234', 'John Doe', 'address...');
 
 console.log(customer.toString());
