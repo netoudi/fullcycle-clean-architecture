@@ -1,14 +1,39 @@
 module.exports = {
   env: {
     es2021: true,
-    node: true
+    node: true,
   },
-  extends: 'standard-with-typescript',
-  overrides: [
-  ],
+  extends: ['standard-with-typescript', 'prettier'],
+  plugins: ['eslint-plugin-import-helpers', 'prettier'],
+  overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['tsconfig.json'],
   },
   rules: {
-  }
-}
+    'prettier/prettier': 'error',
+    'import-helpers/order-imports': [
+      'warn',
+      {
+        newlinesBetween: 'never',
+        groups: [
+          '/^react/',
+          'module',
+          '/^@app/assets/',
+          '/^@app/components/',
+          '/^@app/hooks/',
+          '/^@app/pages/',
+          '/^@app/routes/',
+          '/^@app/utils/',
+          '/^@app/styles/',
+          ['parent', 'sibling', 'index'],
+        ],
+        alphabetize: {
+          order: 'asc',
+          ignoreCase: true,
+        },
+      },
+    ],
+  },
+};
