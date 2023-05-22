@@ -37,6 +37,14 @@ export class Customer {
     this._active = false;
   }
 
+  isActive(): boolean {
+    return this._active;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
   get address(): Address {
     return this._address;
   }
