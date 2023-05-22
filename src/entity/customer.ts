@@ -1,13 +1,14 @@
+import { type Address } from '@app/entity/address';
+
 export class Customer {
   private readonly _id: string;
   private _name: string;
-  private readonly _address: string;
+  private _address!: Address;
   private _active: boolean = true;
 
-  constructor(id: string, name: string, address: string) {
+  constructor(id: string, name: string) {
     this._id = id;
     this._name = name;
-    this._address = address;
     this.validate();
   }
 
@@ -26,7 +27,7 @@ export class Customer {
   }
 
   activate(): void {
-    if (this._address.length === 0) {
+    if (this._address === undefined) {
       throw new Error('Address is mandatory to activate a customer');
     }
     this._active = true;
@@ -34,6 +35,14 @@ export class Customer {
 
   deactivate(): void {
     this._active = false;
+  }
+
+  get address(): Address {
+    return this._address;
+  }
+
+  set address(address: Address) {
+    this._address = address;
   }
 
   toString(): string {
