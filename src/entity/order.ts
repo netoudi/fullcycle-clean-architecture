@@ -5,7 +5,7 @@ export class Order {
   private readonly _customerId: string;
   private readonly _items: OrderItem[];
 
-  constructor(id: string, customerId: string, items: OrderItem[] = []) {
+  constructor(id: string, customerId: string, items: OrderItem[]) {
     this._id = id;
     this._customerId = customerId;
     this._items = items;
@@ -22,10 +22,13 @@ export class Order {
     if (this._items.length === 0) {
       throw new Error('Items are required');
     }
+    if (this._items.some((item) => item.quantity <= 0)) {
+      throw new Error('Quantity must be greater than zero');
+    }
   }
 
   total(): number {
-    return this._items.reduce((acc, item) => acc + item.price, 0);
+    return this._items.reduce((acc, item) => acc + item.total(), 0);
   }
 
   get id(): string {
