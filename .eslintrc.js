@@ -18,6 +18,7 @@ module.exports = {
       {
         newlinesBetween: 'never',
         groups: [
+          '/^node/',
           '/^react/',
           'module',
           '/^@app/assets/',
