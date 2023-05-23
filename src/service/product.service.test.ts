@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Product } from '../entity/product';
 import { ProductService } from './product.service';
 
@@ -10,7 +9,7 @@ describe('ProductService unit tests', () => {
 
     ProductService.increasePrice(products, 100);
 
-    expect(product1.price).toBe(100);
-    expect(product2.price).toBe(200);
+    expect(product1.price).toBe(20);
+    expect(product2.price).toBe(40);
   });
 });
