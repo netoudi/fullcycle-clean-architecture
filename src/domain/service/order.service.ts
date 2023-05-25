@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-extraneous-class */
 import { randomUUID } from 'node:crypto';
-import { type Customer } from '@app/entity/customer';
-import { type OrderItem } from '@app/entity/order_item';
-import { Order } from '../entity/order';
+import { type Customer } from '@app/domain/entity/customer';
+import { Order } from '@app/domain/entity/order';
+import { type OrderItem } from '@app/domain/entity/order_item';
 
 export class OrderService {
   static placeOrder(customer: Customer, items: OrderItem[]): Order {

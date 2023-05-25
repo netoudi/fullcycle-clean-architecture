@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-extraneous-class */
-import { type Product } from '@app/entity/product';
+import { type Product } from '@app/domain/entity/product';
 
 export class ProductService {
   static increasePrice(products: Product[], percentage: number): void {

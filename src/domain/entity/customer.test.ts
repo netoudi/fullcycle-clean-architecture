@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Address } from './address';
-import { Customer } from './customer';
+import { Address } from '@app/domain/entity/address';
+import { Customer } from '@app/domain/entity/customer';
 
 describe('Customer unit tests', () => {
   it('should throw error when id is empty', () => {

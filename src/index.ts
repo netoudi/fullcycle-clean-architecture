@@ -1,7 +1,7 @@
-import { Address } from '@app/entity/address';
-import { Customer } from '@app/entity/customer';
-import { Order } from '@app/entity/order';
-import { OrderItem } from '@app/entity/order_item';
+import { Address } from '@app/domain/entity/address';
+import { Customer } from '@app/domain/entity/customer';
+import { Order } from '@app/domain/entity/order';
+import { OrderItem } from '@app/domain/entity/order_item';
 
 const message: string = 'Hello World';
 
@@ -12,8 +12,8 @@ const address = new Address('Rua dois', '2', '12345-678', 'São Paulo');
 customer.address = address;
 customer.activate();
 
-const item1 = new OrderItem('1', 'Item 1', 10);
-const item2 = new OrderItem('2', 'Item 2', 10);
+const item1 = new OrderItem('1', 'Item 1', 'p1', 10, 1);
+const item2 = new OrderItem('2', 'Item 2', 'p2', 10, 1);
 
 const order = new Order('1', '1234', [item1, item2]);
 

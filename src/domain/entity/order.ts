@@ -1,4 +1,4 @@
-import { type OrderItem } from '@app/entity/order_item';
+import { type OrderItem } from '@app/domain/entity/order_item';
 
 export class Order {
   private readonly _id: string;

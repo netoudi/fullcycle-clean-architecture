@@ -21,6 +21,8 @@ module.exports = {
           '/^node/',
           '/^react/',
           'module',
+          '/^@app/domain/',
+          '/^@app/infrastructure/',
           '/^@app/assets/',
           '/^@app/components/',
           '/^@app/hooks/',

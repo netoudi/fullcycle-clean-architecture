@@ -1,4 +1,4 @@
-import { type Address } from '@app/entity/address';
+import { type Address } from '@app/domain/entity/address';
 
 export class Customer {
   private readonly _id: string;
