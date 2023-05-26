@@ -27,6 +27,11 @@ export class Customer {
     this.validate();
   }
 
+  changeAddress(address: Address): void {
+    this._address = address;
+    this.validate();
+  }
+
   activate(): void {
     if (this._address === undefined) {
       throw new Error('Address is mandatory to activate a customer');
