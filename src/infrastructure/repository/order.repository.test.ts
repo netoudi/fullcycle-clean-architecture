@@ -33,20 +33,20 @@ describe('OrderRepository', () => {
   it('should create a order', async () => {
     // Customer
     const customerRepository = new CustomerRepository();
-    const customer = new Customer('1', 'Customer 1');
+    const customer = new Customer('111', 'Customer 1');
     customer.changeAddress(new Address('Street 1', '1', 'Zipcode', 'City'));
     await customerRepository.create(customer);
 
     // Product
     const productRepository = new ProductRepository();
-    const product = new Product('1', 'Product 1', 100);
+    const product = new Product('222', 'Product 1', 100);
     await productRepository.create(product);
 
     // Order Item
-    const orderItem = new OrderItem('1', product.name, product.id, product.price, 2);
+    const orderItem = new OrderItem('333', product.name, product.id, product.price, 2);
 
     // Order
-    const order = new Order('1234', customer.id, [orderItem]);
+    const order = new Order('444', customer.id, [orderItem]);
 
     // Order Repository
     const orderRepository = new OrderRepository();
@@ -70,7 +70,5 @@ describe('OrderRepository', () => {
       ],
       total: order.total(),
     });
-
-    console.log(orderModel);
   });
 });
