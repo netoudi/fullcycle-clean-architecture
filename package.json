@@ -8,6 +8,8 @@
     "prettier": "prettier --write src",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "build": "tsc --project tsconfig.json",
+    "test:coverage": "jest --coverage --workers=2",
+    "test:watch": "jest --workers=2 --watchAll",
     "test": "jest"
   },
   "keywords": [],
