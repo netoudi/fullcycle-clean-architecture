@@ -3,7 +3,7 @@ import { type EventHandlerInterface } from '@app/domain/event/@shared/event-hand
 import { type EventInterface } from '@app/domain/event/@shared/event.interface';
 
 export class EventDispatcher implements EventDispatcherInterface {
-  private readonly eventHandlers: Record<string, EventHandlerInterface[]> = {};
+  private eventHandlers: Record<string, EventHandlerInterface[]> = {};
 
   get getEventHandlers(): Record<string, EventHandlerInterface[]> {
     return this.eventHandlers;
@@ -22,10 +22,16 @@ export class EventDispatcher implements EventDispatcherInterface {
   }
 
   unregister(eventName: string, eventHandler: EventHandlerInterface<EventInterface>): void {
-    //
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (this.eventHandlers[eventName]) {
+      const index = this.eventHandlers[eventName].indexOf(eventHandler);
+      if (index !== -1) {
+        this.eventHandlers[eventName].splice(index, 1);
+      }
+    }
   }
 
   unregisterAll(): void {
-    //
+    this.eventHandlers = {};
   }
 }
