@@ -10,7 +10,13 @@ export class EventDispatcher implements EventDispatcherInterface {
   }
 
   notify(event: EventInterface): void {
-    //
+    const eventName = event.constructor.name;
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (this.eventHandlers[eventName]) {
+      this.eventHandlers[eventName].forEach((eventHandler) => {
+        eventHandler.handle(event);
+      });
+    }
   }
 
   register(eventName: string, eventHandler: EventHandlerInterface): void {
