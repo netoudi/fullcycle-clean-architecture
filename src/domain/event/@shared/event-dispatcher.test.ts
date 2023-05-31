@@ -8,7 +8,7 @@ describe('Domain events tests', () => {
 
     eventDispatcher.register('ProductCreatedEvent', eventHandler);
 
-    expect(eventHandler.getEventHandlers.ProductCreatedEvent).toBeDefined();
-    expect(eventHandler.getEventHandlers.ProductCreatedEvent.length).toBe(1);
+    expect(eventDispatcher.getEventHandlers.ProductCreatedEvent).toBeDefined();
+    expect(eventDispatcher.getEventHandlers.ProductCreatedEvent.length).toBe(1);
   });
 });
