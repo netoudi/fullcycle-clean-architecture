@@ -1,7 +1,7 @@
-import { Address } from '@app/domain/entity/address';
-import { Customer } from '@app/domain/entity/customer';
-import { Order } from '@app/domain/entity/order';
-import { OrderItem } from '@app/domain/entity/order_item';
+import { Order } from '@app/domain/checkout/entity/order';
+import { OrderItem } from '@app/domain/checkout/entity/order_item';
+import { Customer } from '@app/domain/customer/entity/customer';
+import { Address } from '@app/domain/customer/value-object/address';
 
 const message: string = 'Hello World';
 
