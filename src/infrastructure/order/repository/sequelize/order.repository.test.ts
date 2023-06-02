@@ -4,13 +4,13 @@ import { OrderItem } from '@app/domain/checkout/entity/order_item';
 import { Customer } from '@app/domain/customer/entity/customer';
 import { Address } from '@app/domain/customer/value-object/address';
 import { Product } from '@app/domain/product/entity/product';
-import { CustomerModel } from '@app/infrastructure/db/sequelize/model/customer.model';
-import { OrderItemModel } from '@app/infrastructure/db/sequelize/model/order-item.model';
-import { OrderModel } from '@app/infrastructure/db/sequelize/model/order.model';
-import { ProductModel } from '@app/infrastructure/db/sequelize/model/product.model';
-import { CustomerRepository } from '@app/infrastructure/repository/customer.repository';
-import { OrderRepository } from '@app/infrastructure/repository/order.repository';
-import { ProductRepository } from '@app/infrastructure/repository/product.repository';
+import { CustomerModel } from '@app/infrastructure/customer/repository/sequelize/customer.model';
+import { CustomerRepository } from '@app/infrastructure/customer/repository/sequelize/customer.repository';
+import { OrderItemModel } from '@app/infrastructure/order/repository/sequelize/order-item.model';
+import { OrderModel } from '@app/infrastructure/order/repository/sequelize/order.model';
+import { OrderRepository } from '@app/infrastructure/order/repository/sequelize/order.repository';
+import { ProductModel } from '@app/infrastructure/product/repository/sequelize/product.model';
+import { ProductRepository } from '@app/infrastructure/product/repository/sequelize/product.repository';
 
 describe('OrderRepository', () => {
   let sequelize: Sequelize;
