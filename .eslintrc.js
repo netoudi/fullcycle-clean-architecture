@@ -12,6 +12,7 @@ module.exports = {
     project: ['tsconfig.json'],
   },
   rules: {
+    '@typescript-eslint/no-extraneous-class': 'off',
     'prettier/prettier': 'error',
     'import-helpers/order-imports': [
       'warn',
