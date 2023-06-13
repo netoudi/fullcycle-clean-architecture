@@ -42,8 +42,4 @@ export class Address {
   get city(): string {
     return this._city;
   }
-
-  toString(): string {
-    return `${this._street}, ${this._number}, ${this._zipcode} ${this._city}`;
-  }
 }

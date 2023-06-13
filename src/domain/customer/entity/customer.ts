@@ -70,8 +70,4 @@ export class Customer {
   get rewardPoints(): number {
     return this._rewardPoints;
   }
-
-  toString(): string {
-    return this._name;
-  }
 }

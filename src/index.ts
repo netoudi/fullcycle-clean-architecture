@@ -19,11 +19,11 @@ const order = new Order('1', '1234', [item1, item2]);
 
 console.log(order.id);
 
-console.log(customer.toString());
+console.log(customer.name);
 
 customer.changeName('Jane Joe');
 
-console.log(customer.toString());
+console.log(customer.name);
 
 // Complexidade de negócio
 // - Domain (coração da applicação)
