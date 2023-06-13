@@ -25,4 +25,10 @@ describe('OrderService unit tests', () => {
 
     expect(total).toBe(500);
   });
+
+  it('should throw an error when items is empty', () => {
+    const customer = new Customer('c1', 'John Doe');
+
+    expect(() => OrderService.placeOrder(customer, [])).toThrowError('Order must have at least one item');
+  });
 });
