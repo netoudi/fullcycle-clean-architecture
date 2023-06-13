@@ -262,4 +262,50 @@ describe('OrderRepository', () => {
     expect(foundOrders).toContainEqual(order1);
     expect(foundOrders).toContainEqual(order2);
   });
+
+  it('should throw an error when sequelize transaction is not available', async () => {
+    jest.spyOn(sequelize, 'transaction');
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    sequelize.transaction.mockImplementation(async () => {
+      await Promise.resolve(undefined);
+    });
+
+    // Customer
+    const customerRepository = new CustomerRepository();
+    const customer = new Customer('111', 'Customer 1');
+    customer.changeAddress(new Address('Street 1', '1', 'Zipcode', 'City'));
+    await customerRepository.create(customer);
+
+    // Product
+    const productRepository = new ProductRepository();
+
+    const product1 = new Product('100', 'Product 1', 100);
+    await productRepository.create(product1);
+
+    const product2 = new Product('200', 'Product 2', 200);
+    await productRepository.create(product2);
+
+    // Order Item
+    const orderItem1 = new OrderItem('333', product1.name, product1.id, product1.price, 2);
+    const orderItem2 = new OrderItem('444', product2.name, product2.id, product2.price, 3);
+
+    // Order
+    const order = new Order('555', customer.id, [orderItem1]);
+
+    // Order create
+    const orderRepository = new OrderRepository();
+    await orderRepository.create(order);
+
+    // Order update
+    expect.assertions(1);
+
+    try {
+      const orderUpdate = new Order(order.id, customer.id, [orderItem1, orderItem2]);
+      await orderRepository.update(orderUpdate);
+    } catch (error) {
+      expect((error as Error).message).toBe('Sequelize transaction not available!');
+    }
+  });
 });
