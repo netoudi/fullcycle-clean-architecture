@@ -1,5 +1,4 @@
 import { CustomerFindUseCase } from '@app/usecase/customer/find/customer.find.usecase';
-import { waitForDebugger } from 'inspector';
 import { Sequelize } from 'sequelize-typescript';
 import { Customer } from '@app/domain/customer/entity/customer';
 import { Address } from '@app/domain/customer/value-object/address';
@@ -28,7 +27,7 @@ describe('test find customer use case', () => {
     const customerRepository = new CustomerRepository();
     const usecase = new CustomerFindUseCase(customerRepository);
 
-    const customer = new Customer('1', 'Customer 1');
+    const customer = new Customer('123', 'John Doe');
     customer.changeAddress(new Address('Street 1', '1', 'Zipcode', 'City'));
     await customerRepository.create(customer);
 

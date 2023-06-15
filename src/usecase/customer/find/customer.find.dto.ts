@@ -6,7 +6,7 @@ export interface CustomerFindOutputDto {
   id: string;
   name: string;
   address: {
-    string: string;
+    street: string;
     number: string;
     zipcode: string;
     city: string;
