@@ -6,7 +6,7 @@ describe('e2e test for customer', () => {
     await sequelize.sync({ force: true });
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await sequelize.close();
   });
 
@@ -29,5 +29,13 @@ describe('e2e test for customer', () => {
     expect(response.body.address.number).toBe('1234');
     expect(response.body.address.zipcode).toBe('Zipcode');
     expect(response.body.address.city).toBe('City');
+  });
+
+  it('should not create a customer', async () => {
+    const response = await request(app).post('/customers').send({
+      name: 'John Doe',
+    });
+
+    expect(response.statusCode).toBe(500);
   });
 });
