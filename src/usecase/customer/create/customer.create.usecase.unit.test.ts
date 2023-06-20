@@ -62,7 +62,7 @@ describe('unit test create customer use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Name is required');
+      expect((error as Error).message).toBe('customer: Name is required');
     }
   });
 

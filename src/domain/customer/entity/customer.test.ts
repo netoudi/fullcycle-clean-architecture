@@ -6,13 +6,13 @@ describe('Customer unit tests', () => {
   it('should throw error when id is empty', () => {
     expect(() => {
       const customer = new Customer('', 'John Doe');
-    }).toThrowError('Id is required');
+    }).toThrowError('customer: Id is required');
   });
 
   it('should throw error when name is empty', () => {
     expect(() => {
       const customer = new Customer('1234', '');
-    }).toThrowError('Name is required');
+    }).toThrowError('customer: Name is required');
   });
 
   it('should change name', () => {

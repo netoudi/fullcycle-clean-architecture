@@ -10,6 +10,10 @@ export class Notification {
     this._errors.push(error);
   }
 
+  hasErrors(): boolean {
+    return this._errors.length > 0;
+  }
+
   messages(context?: string): string {
     const messages: string[] = [];
 

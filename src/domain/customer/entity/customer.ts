@@ -1,24 +1,34 @@
+import { Entity } from '@app/domain/@shared/entity/entity.abstract';
 import { type Address } from '@app/domain/customer/value-object/address';
 
-export class Customer {
-  private readonly _id: string;
+export class Customer extends Entity {
   private _name: string;
   private _address!: Address;
   private _active: boolean = true;
   private _rewardPoints: number = 0;
 
   constructor(id: string, name: string) {
-    this._id = id;
+    super(id);
     this._name = name;
     this.validate();
   }
 
   validate(): void {
     if (this._id.length === 0) {
-      throw new Error('Id is required');
+      this._notifications.addError({
+        context: 'customer',
+        message: 'Id is required',
+      });
     }
     if (this._name.length === 0) {
-      throw new Error('Name is required');
+      this._notifications.addError({
+        context: 'customer',
+        message: 'Name is required',
+      });
+    }
+
+    if (this._notifications.hasErrors()) {
+      throw new Error(this._notifications.messages());
     }
   }
 
@@ -49,10 +59,6 @@ export class Customer {
 
   addRewardPoints(points: number): void {
     this._rewardPoints += points;
-  }
-
-  get id(): string {
-    return this._id;
   }
 
   get name(): string {
