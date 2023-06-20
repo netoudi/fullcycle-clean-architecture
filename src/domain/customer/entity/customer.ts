@@ -1,4 +1,5 @@
 import { Entity } from '@app/domain/@shared/entity/entity.abstract';
+import { NotificationError } from '@app/domain/@shared/notification/notification.error';
 import { type Address } from '@app/domain/customer/value-object/address';
 
 export class Customer extends Entity {
@@ -28,7 +29,7 @@ export class Customer extends Entity {
     }
 
     if (this._notifications.hasErrors()) {
-      throw new Error(this._notifications.messages());
+      throw new NotificationError(this._notifications.getErrors());
     }
   }
 
