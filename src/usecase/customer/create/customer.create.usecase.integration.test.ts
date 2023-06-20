@@ -87,7 +87,7 @@ describe('integration test create customer use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Street is required');
+      expect((error as Error).message).toBe('address: Street is required');
     }
   });
 
@@ -102,7 +102,7 @@ describe('integration test create customer use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Number is required');
+      expect((error as Error).message).toBe('address: Number is required');
     }
   });
 
@@ -117,7 +117,7 @@ describe('integration test create customer use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Zipcode is required');
+      expect((error as Error).message).toBe('address: Zipcode is required');
     }
   });
 
@@ -132,7 +132,7 @@ describe('integration test create customer use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('City is required');
+      expect((error as Error).message).toBe('address: City is required');
     }
   });
 });

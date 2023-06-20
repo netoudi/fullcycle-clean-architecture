@@ -2,6 +2,6 @@ import { type NotificationErrorProps } from '@app/domain/@shared/notification/no
 
 export class NotificationError extends Error {
   constructor(public errors: NotificationErrorProps[]) {
-    super();
+    super(errors.map((error) => `${error.context}: ${error.message}`).join(','));
   }
 }
