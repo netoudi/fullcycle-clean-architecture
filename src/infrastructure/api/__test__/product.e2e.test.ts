@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app, sequelize } from '@app/infrastructure/api/express';
 
-describe('e2e test for customer', () => {
+describe('e2e test for product', () => {
   beforeEach(async () => {
     await sequelize.sync({ force: true });
   });
@@ -10,7 +10,7 @@ describe('e2e test for customer', () => {
     await sequelize.close();
   });
 
-  it('should create a customer', async () => {
+  it('should create a product', async () => {
     const response = await request(app).post('/products').send({
       name: 'My product',
       price: 10,
@@ -21,7 +21,7 @@ describe('e2e test for customer', () => {
     expect(response.body.price).toBe(10);
   });
 
-  it('should not create a customer', async () => {
+  it('should not create a product', async () => {
     const response = await request(app).post('/products').send({
       name: 'My product',
     });
@@ -30,7 +30,7 @@ describe('e2e test for customer', () => {
   });
 
   it('should list all products', async () => {
-    // customer My product
+    // create product 1
     const response1 = await request(app).post('/products').send({
       name: 'My product 1',
       price: 10,
@@ -38,7 +38,7 @@ describe('e2e test for customer', () => {
 
     expect(response1.statusCode).toBe(200);
 
-    // customer Jane Doe
+    // create product 2
     const response2 = await request(app).post('/products').send({
       name: 'My product 2',
       price: 20,
@@ -52,14 +52,14 @@ describe('e2e test for customer', () => {
     expect(listResponse.statusCode).toBe(200);
     expect(listResponse.body.products).toHaveLength(2);
 
-    // customer 1
-    const customer1 = listResponse.body.products[0];
-    expect(customer1.name).toBe('My product 1');
-    expect(customer1.price).toBe(10);
+    // product 1
+    const product1 = listResponse.body.products[0];
+    expect(product1.name).toBe('My product 1');
+    expect(product1.price).toBe(10);
 
-    // customer 2
-    const customer2 = listResponse.body.products[1];
-    expect(customer2.name).toBe('My product 2');
-    expect(customer2.price).toBe(20);
+    // product 2
+    const product2 = listResponse.body.products[1];
+    expect(product2.name).toBe('My product 2');
+    expect(product2.price).toBe(20);
   });
 });

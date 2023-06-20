@@ -47,7 +47,7 @@ describe('unit test create product use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Name is required');
+      expect((error as Error).message).toBe('product: Name is required');
     }
   });
 
@@ -62,7 +62,7 @@ describe('unit test create product use case', () => {
     try {
       await usecase.execute(input);
     } catch (error) {
-      expect((error as Error).message).toBe('Price must be greater than zero');
+      expect((error as Error).message).toBe('product: Price must be greater than zero');
     }
   });
 });

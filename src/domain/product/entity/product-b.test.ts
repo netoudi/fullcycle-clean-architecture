@@ -5,23 +5,29 @@ describe('ProductB unit tests', () => {
   it('should throw error when id is empty', () => {
     expect(() => {
       const product = new ProductB('', 'Product 1', 100);
-    }).toThrowError('Id is required');
+    }).toThrowError('product-b: Id is required');
   });
 
   it('should throw error when name is empty', () => {
     expect(() => {
       const product = new ProductB('1234', '', 100);
-    }).toThrowError('Name is required');
+    }).toThrowError('product-b: Name is required');
   });
 
   it('should throw error when price less then zero or equals zero', () => {
     expect(() => {
       const product = new ProductB('1234', 'Product 1', -1);
-    }).toThrowError('Price must be greater than zero');
+    }).toThrowError('product-b: Price must be greater than zero');
 
     expect(() => {
       const product = new ProductB('1234', 'Product 1', 0);
-    }).toThrowError('Price must be greater than zero');
+    }).toThrowError('product-b: Price must be greater than zero');
+  });
+
+  it('should throw error when id and name are empty', () => {
+    expect(() => {
+      const customer = new ProductB('', '', 10);
+    }).toThrowError('product-b: Id is required,product-b: Name is required');
   });
 
   it('should change name', () => {
