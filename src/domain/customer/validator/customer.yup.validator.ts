@@ -9,12 +9,12 @@ export class CustomerYupValidator implements ValidatorInterface<Customer> {
         .object()
         .shape({
           id: yup.string().required('Id is required'),
-          name: yup.string().required('Id is required'),
+          name: yup.string().required('Name is required'),
         })
         .validateSync(
           {
             id: entity.id,
-            name: entity,
+            name: entity.name,
           },
           {
             abortEarly: false,

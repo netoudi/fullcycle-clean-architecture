@@ -1,50 +1,28 @@
 import { Notification } from '@app/domain/@shared/notification/notification';
 import { NotificationError } from '@app/domain/@shared/notification/notification.error';
+import { AddressValidatorFactory } from '@app/domain/customer/factory/address.validator.factory';
 
 export class Address {
   private readonly _street: string;
   private readonly _number: string;
   private readonly _zipcode: string;
   private readonly _city: string;
-  private readonly _notifications: Notification;
+  private readonly _notification: Notification;
 
   constructor(street: string, number: string, zipcode: string, city: string) {
     this._street = street;
     this._number = number;
     this._zipcode = zipcode;
     this._city = city;
-    this._notifications = new Notification();
+    this._notification = new Notification();
     this.validate();
   }
 
   validate(): void {
-    if (this._street.length === 0) {
-      this._notifications.addError({
-        context: 'address',
-        message: 'Street is required',
-      });
-    }
-    if (this._number.length === 0) {
-      this._notifications.addError({
-        context: 'address',
-        message: 'Number is required',
-      });
-    }
-    if (this._zipcode.length === 0) {
-      this._notifications.addError({
-        context: 'address',
-        message: 'Zipcode is required',
-      });
-    }
-    if (this._city.length === 0) {
-      this._notifications.addError({
-        context: 'address',
-        message: 'City is required',
-      });
-    }
+    AddressValidatorFactory.create().validate(this);
 
-    if (this._notifications.hasErrors()) {
-      throw new NotificationError(this._notifications.getErrors());
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
     }
   }
 
@@ -62,5 +40,9 @@ export class Address {
 
   get city(): string {
     return this._city;
+  }
+
+  get notification(): Notification {
+    return this._notification;
   }
 }
