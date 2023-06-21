@@ -1,6 +1,7 @@
 import { Entity } from '@app/domain/@shared/entity/entity.abstract';
 import { NotificationError } from '@app/domain/@shared/notification/notification.error';
 import { type ProductInterface } from '@app/domain/product/entity/product.interface';
+import { ProductValidatorFactory } from '@app/domain/product/factory/product.validator.factory';
 
 export class ProductB extends Entity implements ProductInterface {
   private _name: string;
@@ -14,27 +15,10 @@ export class ProductB extends Entity implements ProductInterface {
   }
 
   validate(): void {
-    if (this._id.length === 0) {
-      this._notifications.addError({
-        context: 'product-b',
-        message: 'Id is required',
-      });
-    }
-    if (this._name.length === 0) {
-      this._notifications.addError({
-        context: 'product-b',
-        message: 'Name is required',
-      });
-    }
-    if (this._price <= 0) {
-      this._notifications.addError({
-        context: 'product-b',
-        message: 'Price must be greater than zero',
-      });
-    }
+    ProductValidatorFactory.create().validate(this);
 
-    if (this._notifications.hasErrors()) {
-      throw new NotificationError(this._notifications.getErrors());
+    if (this.notification.hasErrors()) {
+      throw new NotificationError(this.notification.getErrors());
     }
   }
 
