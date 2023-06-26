@@ -14,13 +14,15 @@ export class CustomerPresenter {
       {
         customers: data.customers.map((customer) => {
           return {
-            id: customer.id,
-            name: customer.name,
-            address: {
-              street: customer.address.street,
-              number: customer.address.number,
-              zipcode: customer.address.zipcode,
-              city: customer.address.city,
+            customer: {
+              id: customer.id,
+              name: customer.name,
+              address: {
+                street: customer.address.street,
+                number: customer.address.number,
+                zipcode: customer.address.zipcode,
+                city: customer.address.city,
+              },
             },
           };
         }),

@@ -24,12 +24,7 @@ productsRoute.post('/', async (req: Request, res: Response) => {
 
 productsRoute.get('/', async (req: Request, res: Response) => {
   const usecase = new ProductListUseCase(new ProductRepository());
+  const output = await usecase.execute({});
 
-  try {
-    const output = await usecase.execute({});
-
-    res.send(output);
-  } catch (error) {
-    res.status(500).send(error);
-  }
+  res.send(output);
 });
